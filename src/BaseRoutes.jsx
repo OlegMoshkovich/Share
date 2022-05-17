@@ -36,6 +36,9 @@ export default function BaseRoutes({testElt = null}) {
       const ref = new URL(referrer + window.location.hash)
       if (ref.pathname.length > 1) {
         navigate(ref)
+      } else {
+        console.log('fallthrough referrer')
+        navigate(installPrefix + '/share')
       }
     } else if (location.pathname === installPrefix ||
                location.pathname === (installPrefix + '/')) {
@@ -45,7 +48,7 @@ export default function BaseRoutes({testElt = null}) {
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
-  const basePath = installPrefix + '/*'
+  const basePath = installPrefix + '/'
   return (
     <Routes>
       <Route path={basePath} element={<Outlet/>}>
