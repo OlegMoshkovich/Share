@@ -12,9 +12,10 @@ import AttentionIcon from '../assets/2D_Icons/Attention.svg'
  *
  * @param {loaderOn} boolen dictates id the loader starts with linearLoader present
  * @param {duration} number seconds until no content sign appears
+ * @param {showError} boolen seconds until no content sign appears
  * @return {object} React component.
  */
-export default function Loader({loaderOn = true, duration = 10000}) {
+export default function Loader({loaderOn = true, duration = 10000, showError = true}) {
   const [loading, setLoading] = useState(loaderOn)
   const theme = useContext(ColorModeContext).getTheme()
   if (loading) {
@@ -26,23 +27,25 @@ export default function Loader({loaderOn = true, duration = 10000}) {
     <Box sx={{width: '100%'}}>
       {loading ?
         <LinearProgress color="success" sx={{height: '16px', width: '100%', borderRadius: '5px'}}/> :
-        <Box sx={{
-          'display': 'flex',
-          'flexDirection': 'column',
-          'justifyContent': 'center',
-          'alignItems': 'center',
-          '& svg': {
-            width: '30px',
-            height: '30px',
-            fill: theme.palette.highlight.secondary,
-          },
-        }}
-        >
-          <Box>
-            <AttentionIcon/>
+        showError && (
+          <Box sx={{
+            'display': 'flex',
+            'flexDirection': 'column',
+            'justifyContent': 'center',
+            'alignItems': 'center',
+            '& svg': {
+              width: '30px',
+              height: '30px',
+              fill: theme.palette.highlight.secondary,
+            },
+          }}
+          >
+            <Box>
+              <AttentionIcon/>
+            </Box>
+            <Typography variant={'h4'}> no content </Typography>
           </Box>
-          <Typography variant={'h4'}> No Content </Typography>
-        </Box>
+        )
       }
     </Box>
   )
