@@ -6,15 +6,21 @@ import {ColorModeContext} from '../Context/ColorMode'
 import AttentionIcon from '../assets/2D_Icons/Attention.svg'
 
 
-/** @return {object} React component. */
-export default function Loader({loader = true}) {
-  const [loading, setLoading] = useState(loader)
+/**
+ * Loader contains the ItemPanel and allows for
+ * show/hide from the right of the screen.
+ *
+ * @param {loaderOn} boolen dictates id the loader starts with linearLoader present
+ * @param {duration} number seconds until no content sign appears
+ * @return {object} React component.
+ */
+export default function Loader({loaderOn = true, duration = 10000}) {
+  const [loading, setLoading] = useState(loaderOn)
   const theme = useContext(ColorModeContext).getTheme()
-  const loadingPeriod = 10000
   if (loading) {
     setTimeout(function() {
       setLoading(false)
-    }, loadingPeriod)
+    }, duration)
   }
   return (
     <Box sx={{width: '100%'}}>
