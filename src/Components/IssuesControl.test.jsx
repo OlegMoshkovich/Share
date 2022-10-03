@@ -54,11 +54,12 @@ describe('IssueControl', () => {
 
   it('test Loader', async () => {
     const {result} = renderHook(() => useStore((state) => state))
-    const {debug} = render(<ShareMock><Issues/></ShareMock>)
+    const {debug, getByRole} = render(<ShareMock><Issues/></ShareMock>)
     await act(() => {
       result.current.setIssues([])
     })
     debug()
+    // expect(await getByRole('progressbar')).toBeVisible()
   })
 })
 
