@@ -7,8 +7,8 @@ import AttentionIcon from '../assets/2D_Icons/Attention.svg'
 
 
 /** @return {object} React component. */
-export default function Loader() {
-  const [loading, setLoading] = useState(true)
+export default function Loader({loader = true}) {
+  const [loading, setLoading] = useState(loader)
   const theme = useContext(ColorModeContext).getTheme()
   const loadingPeriod = 10000
   if (loading) {
