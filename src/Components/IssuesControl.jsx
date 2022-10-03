@@ -8,7 +8,7 @@ import {makeStyles, useTheme} from '@mui/styles'
 import {addHashParams, removeHashParams} from '../utils/location'
 import {getIssues, getComments} from '../utils/GitHub'
 import IssueCard from './IssueCard'
-import LinearProgress from '@mui/material/LinearProgress'
+import Loader from './Loader'
 import {TooltipIconButton} from './Buttons'
 import {setCameraFromParams, addCameraUrlParams, removeCameraUrlParams} from './CameraControl'
 import BackIcon from '../assets/2D_Icons/Back.svg'
@@ -146,7 +146,6 @@ export function Issues() {
         })
         if (issuesArr.length > 0) {
           setIssues(issuesArr)
-          // setIssues([])
         } else {
           setIssues([])
         }
@@ -202,7 +201,7 @@ export function Issues() {
     <Paper className={classes.commentsContainer} elevation={0}>
       <div className={classes.cardsContainer}>
         {issues.length === 0 &&
-          <LinearProgress color="success" sx={{height: '16px', width: '100%', borderRadius: '5px'}}/>
+          <Loader/>
         }
         {!selectedIssueId ?
           issues.map((issue, index) => {
