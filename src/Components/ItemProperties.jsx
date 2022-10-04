@@ -6,7 +6,6 @@ import {makeStyles, useTheme} from '@mui/styles'
 import useStore from '../store/useStore'
 import {createPropertyTable} from '../utils/itemProperties'
 import ExpansionPanel from './ExpansionPanel'
-import Loader from './Loader'
 
 
 /**
@@ -30,7 +29,6 @@ export default function ItemProperties() {
   }, [model, element, classes, expandAll])
   return (
     <div className={classes.propsContainer}>
-      <Loader duration={16000} showError={false}/>
       {propTable}
       <div className={classes.psetContainer}>
         {psetsList && psetsList.props.children.length > 0 &&
