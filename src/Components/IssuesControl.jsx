@@ -71,7 +71,7 @@ export function IssuesNavBar() {
       </div>
 
       <div className={classes.middleGroup} >
-        {selectedIssueId && issues.length > 1 &&
+        {(issues && selectedIssueId) && issues.length > 1 &&
           <>
             <TooltipIconButton
               title='Previous Note'
@@ -115,7 +115,7 @@ export function Issues() {
   const setIssues = useStore((state) => state.setIssues)
   const comments = useStore((state) => state.comments)
   const setComments = useStore((state) => state.setComments)
-  const filteredIssue = selectedIssueId ?
+  const filteredIssue = (issues && selectedIssueId) ?
         issues.filter((issue) => issue.id === selectedIssueId)[0] : null
   const repository = useStore((state) => state.repository)
   useEffect(() => {
@@ -144,10 +144,11 @@ export function Issues() {
             numberOfComments: issue.comments,
           })
         })
+        console.log('issues array', issuesArr.length)
         if (issuesArr.length > 0) {
           setIssues(issuesArr)
         } else {
-          setIssues([])
+          setIssues(null)
         }
       } catch (e) {
         debug().warn('failed to fetch issues', e)
@@ -200,10 +201,10 @@ export function Issues() {
   return (
     <Paper className={classes.commentsContainer} elevation={0}>
       <div className={classes.cardsContainer}>
-        {issues.length === 0 &&
+        {issues === null &&
           <Loader/>
         }
-        {!selectedIssueId ?
+        {issues && !selectedIssueId ?
           issues.map((issue, index) => {
             return (
               <IssueCard

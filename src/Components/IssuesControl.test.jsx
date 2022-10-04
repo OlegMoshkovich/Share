@@ -2,10 +2,21 @@ import React from 'react'
 import {act, render, renderHook} from '@testing-library/react'
 import ShareMock from '../ShareMock'
 import useStore from '../store/useStore'
+import {restoreRegularNetworkingForUnitTests} from '../utils/network'
+import {MOCK_ISSUES_EMPTY} from '../../src/utils/GitHub'
+import {__setMockIssues} from '../../__mocks__/@octokit/rest'
 import {IssuesNavBar, Issues} from './IssuesControl'
 
 
 describe('IssueControl', () => {
+  beforeAll(() => restoreRegularNetworkingForUnitTests(true))
+  beforeEach(async () => {
+    const {result} = renderHook(() => useStore((state) => state))
+    await act(() => {
+      result.current.setIssues(null)
+    })
+  })
+
   it('Issues NavBar Issues', () => {
     const {getByText} = render(<ShareMock><IssuesNavBar/></ShareMock>)
     expect(getByText('Notes')).toBeInTheDocument()
@@ -48,21 +59,26 @@ describe('IssueControl', () => {
       result.current.setComments(MOCK_COMMENTS)
     })
     expect(await getByText('open_workspace')).toBeVisible()
-    // expect(await getByText('The Architecture, Engineering and Construction')).toBeVisible()
-    // expect(await getByText('Email is the medium that still facilitates major portion of communication')).toBeVisible()
   })
 
-  it('test Loader', async () => {
-    const {result} = renderHook(() => useStore((state) => state))
-    const {debug,
-      // getByRole
-    } = render(<ShareMock><Issues/></ShareMock>)
-    await act(() => {
-      result.current.setIssues([])
-    })
-    debug()
-    // expect(await getByRole('progressbar')).toBeVisible()
+  it('test Loader present is issues are null', () => {
+    __setMockIssues(MOCK_ISSUES_EMPTY)
+    // const {result} = renderHook(() => useStore((state) => state))
+    const {getByRole} = render(<ShareMock><Issues/></ShareMock>)
+    expect(getByRole('progressbar')).toBeInTheDocument()
+    // __setMockIssues(MOCK_ISSUES)
+    // await act(() => {
+    //   result.current.setIssues(MOCK_ISSUES)
+    // })
+    // expect(findByRole('progressbar')).not.toBeInTheDocument()
   })
+
+  // it('test Loader', async () => {
+  //   setMockDisabledForUnitTests(false)
+  //   __setMockIssues(MOCK_ISSUES_EMPTY)
+  //   const {getByRole} = render(<ShareMock><Issues/></ShareMock>)
+  //   expect(await getByRole('progressbar')).toBeVisible()
+  // })
 })
 
 
