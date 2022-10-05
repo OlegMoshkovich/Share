@@ -144,7 +144,6 @@ export function Issues() {
             numberOfComments: issue.comments,
           })
         })
-        console.log('issues array', issuesArr.length)
         if (issuesArr.length > 0) {
           setIssues(issuesArr)
         } else {

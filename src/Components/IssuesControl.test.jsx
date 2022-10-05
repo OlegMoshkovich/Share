@@ -10,6 +10,7 @@ import {IssuesNavBar, Issues} from './IssuesControl'
 
 describe('IssueControl', () => {
   beforeAll(() => restoreRegularNetworkingForUnitTests(true))
+
   beforeEach(async () => {
     const {result} = renderHook(() => useStore((state) => state))
     await act(() => {
@@ -17,10 +18,12 @@ describe('IssueControl', () => {
     })
   })
 
+
   it('Issues NavBar Issues', () => {
     const {getByText} = render(<ShareMock><IssuesNavBar/></ShareMock>)
     expect(getByText('Notes')).toBeInTheDocument()
   })
+
 
   it('NavBar changes to back nav when issue selected', async () => {
     const {result} = renderHook(() => useStore((state) => state))
@@ -31,6 +34,7 @@ describe('IssueControl', () => {
     })
     expect(await getByTitle('Back to the list')).toBeInTheDocument()
   })
+
 
   it('Setting issues in zustand', async () => {
     const {result} = renderHook(() => useStore((state) => state))
@@ -45,6 +49,7 @@ describe('IssueControl', () => {
     expect(await getByText('closed_system')).toBeInTheDocument()
   })
 
+
   it('Setting comments in zustand ', async () => {
     const {result} = renderHook(() => useStore((state) => state))
     const testIssueId = 10
@@ -54,31 +59,31 @@ describe('IssueControl', () => {
     })
     await act(() => {
       result.current.setIssues(MOCK_ISSUES)
-    })
-    await act(() => {
       result.current.setComments(MOCK_COMMENTS)
     })
     expect(await getByText('open_workspace')).toBeVisible()
   })
 
-  it('test Loader present is issues are null', () => {
+
+  it('test Loader is present if issues are null', async () => {
     __setMockIssues(MOCK_ISSUES_EMPTY)
-    // const {result} = renderHook(() => useStore((state) => state))
-    const {getByRole} = render(<ShareMock><Issues/></ShareMock>)
-    expect(getByRole('progressbar')).toBeInTheDocument()
-    // __setMockIssues(MOCK_ISSUES)
-    // await act(() => {
-    //   result.current.setIssues(MOCK_ISSUES)
-    // })
-    // expect(findByRole('progressbar')).not.toBeInTheDocument()
+    const {findByRole} = render(<ShareMock><Issues/></ShareMock>)
+    expect(await findByRole('progressbar')).toBeInTheDocument()
   })
 
-  // it('test Loader', async () => {
-  //   setMockDisabledForUnitTests(false)
-  //   __setMockIssues(MOCK_ISSUES_EMPTY)
-  //   const {getByRole} = render(<ShareMock><Issues/></ShareMock>)
-  //   expect(await getByRole('progressbar')).toBeVisible()
-  // })
+
+  it('test Loader is present if issues are null, and removed when issues set', async () => {
+    __setMockIssues(MOCK_ISSUES_EMPTY)
+    const {getByRole, queryByRole} = render(<ShareMock><Issues/></ShareMock>)
+    expect(getByRole('progressbar')).toBeInTheDocument()
+    __setMockIssues(MOCK_ISSUES)
+    const {result} = renderHook(() => useStore((state) => state))
+    await act(() => {
+      result.current.setIssues(MOCK_ISSUES)
+    })
+    // queryByRole is used to not throw an error is the element is missing.
+    expect(queryByRole('progressbar')).not.toBeInTheDocument()
+  })
 })
 
 
