@@ -1,17 +1,4 @@
-<svg width="68" height="91" viewBox="0 0 68 91" fill="none" xmlns="http://www.w3.org/2000/svg">
-<rect x="0.05" y="0.05" width="67.9" height="90.9" stroke="black" stroke-opacity="0.01" stroke-width="0.1"/>
-<path d="M17.9675 2L4.93939 8.07977V87.9853H17.9675V2Z" fill="#6D8752"/>
-<path d="M19.5708 43.6635V87.9538L36.2068 87.9852L36.2541 39.292L19.5708 43.6635Z" fill="#6D8752"/>
-<path d="M17.9675 2L45.7607 4.9999V40.2734L36.2068 39.3472L19.5707 43.6636V87.9853H17.9675V2Z" fill="#E9E8E2"/>
-<path d="M36.1648 39.292L36.2068 87.9852H64V42.0577L36.1648 39.292Z" fill="#E9E8E2"/>
-<path d="M36.254 39.292L63.9107 42.1469" stroke="black" stroke-width="0.5" stroke-linecap="round"/>
-<path d="M36.254 39.292V87.8252" stroke="black" stroke-width="0.5" stroke-linecap="round"/>
-<path d="M36.254 39.292L19.5707 43.6635V87.9144H63.9108" stroke="black" stroke-width="0.5" stroke-linecap="round"/>
-<path d="M63.9107 42.147V87.9145" stroke="black" stroke-width="0.5" stroke-linecap="round"/>
-<path d="M19.5707 87.9144H5.02855" stroke="black" stroke-width="0.5" stroke-linecap="round"/>
-<path d="M5.02855 87.9144V8.15582" stroke="black" stroke-width="0.5" stroke-linecap="round"/>
-<path d="M5.02859 8.15588L17.9648 2.08923" stroke="black" stroke-width="0.5" stroke-linecap="round"/>
-<path d="M17.9648 2.08923L45.7108 5.03334" stroke="black" stroke-width="0.5" stroke-linecap="round"/>
-<path d="M45.7108 5.03333V40.1842" stroke="black" stroke-width="0.5" stroke-linecap="round"/>
-<path d="M17.9648 2.17847V87.8253" stroke="black" stroke-width="0.5" stroke-linecap="round"/>
+<svg width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+<rect x="0.05" y="0.05" width="29.9" height="29.9" rx="4.95" stroke="black" stroke-opacity="0.01" stroke-width="0.1"/>
+<path d="M11.1492 3.1397L8.55279 4.43789C8.214 4.60728 8 4.95355 8 5.33232V26C8 26.5523 8.44772 27 9 27H23C23.5523 27 24 26.5523 24 26V14.7399C24 14.2356 23.6245 13.8102 23.124 13.7476L20.3045 13.3952C19.8041 13.3327 19.4286 12.9073 19.4286 12.4029V5.01015C19.4286 4.5125 19.0626 4.09058 18.57 4.0202L11.7378 3.04418C11.5364 3.01541 11.3311 3.04873 11.1492 3.1397Z" fill="#6D8752" stroke="#6D8752"/>
 </svg>

@@ -9,7 +9,7 @@ export function getColors() {
   return {
     grey: {
       lightest: grey[100],
-      light: grey[300],
+      light: '#B6B6B3',
       medium: '#C1C1C1',
       dark: '#242424',
       darkest: '#171717',

@@ -40,7 +40,7 @@ export default function AboutControl() {
           sx={{
             '& svg': {
               marginTop: '6px',
-              width: '18px',
+              width: '30px',
             },
           }}
         >
