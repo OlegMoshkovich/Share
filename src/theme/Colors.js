@@ -12,7 +12,7 @@ export function getColors() {
       light: grey[300],
       medium: '#C1C1C1',
       dark: '#242424',
-      darkest: '#2D2D2D',
+      darkest: '#171717',
     },
     green: {
       lightest: '#CEE6CA',
