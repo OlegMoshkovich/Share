@@ -57,9 +57,11 @@ export async function getIssue(repository, issueNumber, accessToken) {
 
 /**
  * @param {object} repository
- * @param {object} issueNumber
+ * @param {number} issueNumber
+ * @param {string} body
+ * @param {string} title
  * @param {string} accessToken Github API OAuth access token
- * @return {object} result
+ * @return {object} response from GH
  */
 export async function updateIssue(repository, issueNumber, body, title, accessToken) {
   const args = {
@@ -75,9 +77,9 @@ export async function updateIssue(repository, issueNumber, body, title, accessTo
 
 /**
  * @param {object} repository
- * @param {object} issueNumber
+ * @param {number} issueNumber
  * @param {string} accessToken Github API OAuth access token
- * @return {object} result
+ * @return {object} response from GH
  */
 export async function closeIssue(repository, issueNumber, accessToken) {
   const args = {

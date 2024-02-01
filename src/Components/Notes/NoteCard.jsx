@@ -1,4 +1,3 @@
-
 import React, {useState, useEffect} from 'react'
 import {useAuth0} from '@auth0/auth0-react'
 import Avatar from '@mui/material/Avatar'
@@ -7,24 +6,25 @@ import CardHeader from '@mui/material/CardHeader'
 import {
   CardFooter,
   CardMenu,
+  CommentCardBody,
+  EditCardBody,
   RegularCardBody,
   SelectedCardBody,
-  EditCardBody,
-  CommentCardBody,
-} from './NoteCardSupportCompoents'
+} from './NoteCardSupportComponents'
 import useStore from '../../store/useStore'
+import {closeIssue, updateIssue, deleteComment} from '../../utils/GitHub'
 import {assertDefined} from '../../utils/assert'
 import {addHashParams, getHashParamsFromHashStr, removeHashParams} from '../../utils/location'
 import {findUrls} from '../../utils/strings'
-import {closeIssue, updateIssue, deleteComment} from '../../utils/GitHub'
 import {
   CAMERA_PREFIX,
   addCameraUrlParams,
-  setCameraFromParams,
   parseHashParams,
+  setCameraFromParams,
   removeCameraUrlParams,
 } from '../CameraControl'
 import {NOTE_PREFIX} from './Notes'
+
 
 /**
  * Note card
@@ -163,31 +163,23 @@ export default function NoteCard({
     await deleteComment(repository, commentId, accessToken)
   }
 
-  /**
-   * Triggerred when menu is closed
-   */
+  /** Unset anchor elt */
   function handleMenuClose() {
     setAnchorEl(null)
   }
 
-  /**
-   * Triggerred when menu icon is activated
-   */
+  /** Sets anchor elt to event target */
   function handleMenuClick(event) {
     setAnchorEl(event.currentTarget)
   }
 
-  /**
-   * Activate note edit mode
-   */
+  /** Activate note edit mode */
   function actviateEditMode() {
     handleMenuClose()
     setEditMode(true)
   }
 
-  /**
-   *Submit update
-   */
+  /** Updates the issue on GH, renders the new body and make not editable. */
   async function submitUpdate() {
     const res = await updateIssue(repository, noteNumber, editBody, title, accessToken)
     const editedNote = notes.find((note) => note.id === id)
@@ -196,9 +188,7 @@ export default function NoteCard({
     setEditMode(false)
   }
 
-  /**
-   * Update body
-   */
+  /** Update body */
   const handleTextUpdate = (event) => {
     setEditBody(event.target.value)
   }
