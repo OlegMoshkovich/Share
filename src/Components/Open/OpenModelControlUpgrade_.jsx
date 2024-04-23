@@ -241,7 +241,7 @@ function OpenModelDialog({
               </Box>
             }
             {currentTab === 'Delete' &&
-              <Box sx={{textAlign: 'center', paddingTop: '10px'}}>
+              <Box sx={{textAlign: 'center'}}>
                 <Button onClick={navigateToFile} variant='contained' disabled={selectedFileName === ''}>
                   Delete model
                 </Button>
